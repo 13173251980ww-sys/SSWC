@@ -47,7 +47,8 @@ public class SceneSelectPanel : BasePanel
       {
          //隐藏当前面板，切换到对应游戏场景
          UIManager.Instance.HidePanel<SceneSelectPanel>();
-         AsyncOperation ao = SceneManager.LoadSceneAsync("GameScene");
+         AsyncOperation ao = SceneManager.LoadSceneAsync(nowSceneData.sceneName);
+         Debug.Log(nowSceneData.sceneName);
          ao.completed += (AsyncOperation) =>
          {
             UIManager.Instance.ShowPanel<GamePanel>();

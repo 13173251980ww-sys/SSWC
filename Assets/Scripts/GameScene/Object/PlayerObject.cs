@@ -65,7 +65,7 @@ public class PlayerObject : MonoBehaviour
     public void ShootEvent()
     {
         DataManager.Instance.PlaySound("Gun");
-        RaycastHit[] hits = Physics.RaycastAll(_gunPoint.position, _gunPoint.transform.forward, 1000, 1 << LayerMask.NameToLayer("Monster"));
+        RaycastHit[] hits = Physics.RaycastAll(_gunPoint.position, this.transform.forward, 1000, 1 << LayerMask.NameToLayer("Monster"));
         for (var i = 0; i < hits.Length; i++)
         {
             MonsterObject monster = hits[i].collider.gameObject.GetComponent<MonsterObject>();
@@ -85,12 +85,4 @@ public class PlayerObject : MonoBehaviour
     {
         UIManager.Instance.GetPanel<GamePanel>().UpdateGold(money);
     }
-
-    public void AddMoney(int money)
-    {
-        this.money += money;
-        UpdateMoney();
-    }
-
-  
 }

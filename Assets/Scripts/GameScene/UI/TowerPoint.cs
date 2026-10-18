@@ -16,9 +16,7 @@ namespace UI
         
         public void CreateTower(int id)
         {
-            Debug.Log(id);
             TowerInfo info = DataManager.Instance.TowerInfoDatas[id - 1];
-            Debug.Log(info.name);
             //如果钱不够，就造不了
             if (info.money > DataManager.Instance.PlayerData.gold)
                 return;

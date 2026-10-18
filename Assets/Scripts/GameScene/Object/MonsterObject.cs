@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Assertions.Must;
 
 public class MonsterObject : MonoBehaviour
 {
@@ -58,6 +59,10 @@ public class MonsterObject : MonoBehaviour
         
         //播放音效
         DataManager.Instance.PlaySound("dead");
+        
+        //加钱
+        DataManager.Instance.PlayerData.gold += 50;
+        UIManager.Instance.GetPanel<GamePanel>().UpdateGold(DataManager.Instance.PlayerData.gold);
     }
     
     //攻击——范围检测

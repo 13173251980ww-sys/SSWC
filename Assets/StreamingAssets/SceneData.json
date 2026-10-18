@@ -2,22 +2,22 @@
   {
     "id": 1,
     "imgRes": "SceneImg/1",
-    "name": "疯狂树林",
-    "tips": "啊啊啊啊",
-    "sceneName": "GameScene"
+    "name": "关1",
+    "tips": "Easy",
+    "sceneName": "GameScene1"
   },
   {
     "id": 2,
     "imgRes": "SceneImg/2",
-    "name": "极寒雪地",
-    "tips": "八八八八",
-    "sceneName": "GameScene"
+    "name": "关2",
+    "tips": "Normal",
+    "sceneName": "GameScene2"
   },
   {
     "id": 3,
     "imgRes": "SceneImg/3",
-    "name": "熔岩旱土",
-    "tips": "草草草草",
-    "sceneName": "GameScene"
+    "name": "关3",
+    "tips": "Hard",
+    "sceneName": "GameScene3"
   }
 ]

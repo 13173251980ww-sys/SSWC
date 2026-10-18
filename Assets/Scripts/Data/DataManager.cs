@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class DataManager
 {
-    private static DataManager _instance;
+    private static DataManager _Instance;
     
     public static DataManager Instance
     {
         get
         {
-            if (_instance == null)
+            if (_Instance == null)
             {
-                _instance = new DataManager();
+                _Instance = new DataManager();
             }
-            return _instance;
+            return _Instance;
         }
     }
     
-    public MusicData _musicData; 
+    public MusicData MusicData; 
     public List<RoleInfoData> RoleInfoDatas;
     public PlayerData PlayerData;
     public RoleInfoData NowRoleInfoData;
@@ -28,7 +28,7 @@ public class DataManager
         
     public DataManager()
     {
-        _musicData = JsonMgr.Instance.LoadData<MusicData>("MusicData");
+        MusicData = JsonMgr.Instance.LoadData<MusicData>("MusicData");
         PlayerData = JsonMgr.Instance.LoadData<PlayerData>("PlayerData");
         RoleInfoDatas = JsonMgr.Instance.LoadData<List<RoleInfoData>>("RoleInfoData");
         SceneDatas = JsonMgr.Instance.LoadData<List<SceneData>>("SceneData");
@@ -38,7 +38,7 @@ public class DataManager
     
     public void SaveMusicData()
     {
-        JsonMgr.Instance.SaveData(_musicData, "MusicData");
+        JsonMgr.Instance.SaveData(MusicData, "MusicData");
     }
 
     public void SavePlayerData()
@@ -52,13 +52,12 @@ public class DataManager
         AudioSource audioSource=audioObj.AddComponent<AudioSource>();
         audioSource.clip = Resources.Load<AudioClip>("Music/" + name);
         
-        if (!_musicData.IsOpenSfx)
+        if (!MusicData.IsOpenSfx)
             return;
         
-        audioSource.volume = _musicData.SfxVolume;
+        audioSource.volume = MusicData.SfxVolume;
         audioSource.Play();
-        Debug.Log("Playing SFX: " + name);
 
-        GameObject.Destroy(audioObj,audioSource.clip.length);
+        Object.Destroy(audioObj,audioSource.clip.length);
     }
 }

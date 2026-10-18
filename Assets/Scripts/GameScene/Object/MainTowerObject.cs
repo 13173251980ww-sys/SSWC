@@ -4,7 +4,7 @@ public class MainTowerObject : MonoBehaviour
 {
     private int _hp;
     private int _maxHp;
-    private bool _isDead = false;
+    private bool _isDead;
     
     private static MainTowerObject _instance;
     public static MainTowerObject Instance => _instance;

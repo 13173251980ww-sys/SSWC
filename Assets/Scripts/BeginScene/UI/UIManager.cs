@@ -24,9 +24,9 @@ public class UIManager
     
     public UIManager()
     {
-        GameObject canvas = GameObject.Instantiate(Resources.Load<GameObject>("UI/Canvas"));
+        GameObject canvas = Object.Instantiate(Resources.Load<GameObject>("UI/Canvas"));
         _canvasTrans = canvas.transform;
-        GameObject.DontDestroyOnLoad(canvas);
+        Object.DontDestroyOnLoad(canvas);
     }
     
     public T ShowPanel<T>() where T : BasePanel
@@ -35,7 +35,7 @@ public class UIManager
         if (_panelDic.ContainsKey(panelName))
             return _panelDic[panelName] as T;
         
-        GameObject panelObj = GameObject.Instantiate(Resources.Load<GameObject>("UI/" + panelName));
+        GameObject panelObj = Object.Instantiate(Resources.Load<GameObject>("UI/" + panelName));
         T panel = panelObj.GetComponent<T>();
         panel.ShowMe();
         panel.transform.SetParent(_canvasTrans,false);
@@ -59,13 +59,13 @@ public class UIManager
             {
                 panel.HideMe(() =>
                 {
-                    GameObject.Destroy(panel.gameObject);
+                    Object.Destroy(panel.gameObject);
                     _panelDic.Remove(panelName);
                 });
             }
             else
             {
-                GameObject.Destroy(panel.gameObject);    
+                Object.Destroy(panel.gameObject);    
                 _panelDic.Remove(panelName);
             }
         }   

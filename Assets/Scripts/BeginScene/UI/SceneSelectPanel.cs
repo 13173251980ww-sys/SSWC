@@ -13,8 +13,8 @@ public class SceneSelectPanel : BasePanel
    public Button btnBack;
    public Button btnStart;
    
-   public int nowSceneId=0;
-   public SceneData nowSceneData;
+   public int nowSceneId;
+   public SceneData NowSceneData;
    
    public override void Init()
    {
@@ -47,9 +47,11 @@ public class SceneSelectPanel : BasePanel
       {
          //隐藏当前面板，切换到对应游戏场景
          UIManager.Instance.HidePanel<SceneSelectPanel>();
-         AsyncOperation ao = SceneManager.LoadSceneAsync(nowSceneData.sceneName);
-         Debug.Log(nowSceneData.sceneName);
-         ao.completed += (AsyncOperation) =>
+         AsyncOperation ao = SceneManager.LoadSceneAsync(NowSceneData.sceneName);
+         if(ao == null)
+            return;
+         
+         ao.completed += (asyncOperation) =>
          {
             UIManager.Instance.ShowPanel<GamePanel>();
             GameLevelManager.Instance.InitPlayerInfo();
@@ -61,9 +63,9 @@ public class SceneSelectPanel : BasePanel
    
    public void ChangeScene()
    {
-      nowSceneData = DataManager.Instance.SceneDatas[nowSceneId];
-      nameText.text = nowSceneData.name;
-      descriptionText.text = nowSceneData.tips;
-      sceneImg.sprite = Resources.Load<Sprite>(nowSceneData.imgRes);
+      NowSceneData = DataManager.Instance.SceneDatas[nowSceneId];
+      nameText.text = NowSceneData.name;
+      descriptionText.text = NowSceneData.tips;
+      sceneImg.sprite = Resources.Load<Sprite>(NowSceneData.imgRes);
    }
 }

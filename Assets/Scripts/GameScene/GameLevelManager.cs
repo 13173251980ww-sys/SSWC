@@ -17,9 +17,9 @@ public class GameLevelManager
     }
     
     //记录当前 还有多少波怪物
-    private int _nowWaveNum=0;
+    private int _nowWaveNum;
     //记录 一共有多少波怪物
-    private int _maxWaveNum=0;
+    private int _maxWaveNum;
     
     //记录一共有多少只怪物
     public int MonsterNum=0;
@@ -41,12 +41,12 @@ public class GameLevelManager
         //获取玩家的出生位置
         Transform roleTransform = GameObject.Find("RoleInfoPos").transform;
         //实例化玩家
-        GameObject heroObj = GameObject.Instantiate(Resources.Load<GameObject>(info.res), roleTransform.position, roleTransform.rotation);
+        GameObject heroObj = Object.Instantiate(Resources.Load<GameObject>(info.res), roleTransform.position, roleTransform.rotation);
         PlayerObject player = heroObj.AddComponent<PlayerObject>();
         player.InitPlayer(info.atk,DataManager.Instance.PlayerData.gold);
         GameObject gunPoint = GameObject.Find("gunPoint");
         if(gunPoint!=null)
-            player.GetComponent<PlayerObject>()._gunPoint = gunPoint.transform;
+            player.GetComponent<PlayerObject>().gunPoint = gunPoint.transform;
         
         Camera.main.GetComponent<CameraMove>().SetTarget(heroObj.transform);
         

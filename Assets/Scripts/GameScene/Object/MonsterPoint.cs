@@ -18,9 +18,9 @@ namespace GameScene.Object
         //怪物的ID列表
         public List<int> monsterIds;
         //当前波剩余的怪物只数
-        private int nowMonster;
+        private int _nowMonster;
         //当前的怪物ID
-        private int nowMonsterId;
+        private int _nowMonsterId;
         void Start()
         {
             GameLevelManager.Instance.AddMonsterPoint(this);
@@ -30,7 +30,7 @@ namespace GameScene.Object
         
         public void CreateMonsterWave()
         {
-            nowMonster = monsterNum;
+            _nowMonster = monsterNum;
             waveNum--;
             CreateMonster();
             GameLevelManager.Instance.ChangeWaveNum(1);
@@ -38,17 +38,17 @@ namespace GameScene.Object
         
         public void CreateMonster()
         {
-            nowMonsterId = monsterIds[Random.Range(0, monsterIds.Count)];
-            MonsterInfoData info = DataManager.Instance.MonsterInfoDatas[nowMonsterId-1];
+            _nowMonsterId = monsterIds[Random.Range(0, monsterIds.Count)];
+            MonsterInfoData info = DataManager.Instance.MonsterInfoDatas[_nowMonsterId-1];
             GameObject obj = Instantiate(Resources.Load<GameObject>(info.res), this.transform.position, Quaternion.identity);
             //为我们创建出的怪物预设体 添加怪物脚本 进行初始化
             MonsterObject monsterObj = obj.GetComponent<MonsterObject>();
             monsterObj.InitMonster(info);
             
-            nowMonster--;
+            _nowMonster--;
             GameLevelManager.Instance.MonsterNum++;
             
-            if (nowMonster == 0)
+            if (_nowMonster == 0)
             {
                 if (waveNum > 0)
                 {
@@ -63,7 +63,7 @@ namespace GameScene.Object
         
         public bool CheckOver()
         {
-            return nowMonster == 0 && waveNum == 0;
+            return _nowMonster == 0 && waveNum == 0;
         }
     }
 }

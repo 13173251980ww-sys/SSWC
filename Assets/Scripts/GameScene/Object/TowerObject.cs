@@ -17,7 +17,7 @@ namespace GameScene.Object
         //当前要攻击的目标们
         private List<MonsterObject> _targetObjs;
 
-        private float preTime=0;
+        private float _preTime;
         
         public void Init(TowerInfo info)
         {
@@ -39,9 +39,9 @@ namespace GameScene.Object
                 head.transform.rotation = Quaternion.Slerp(head.transform.rotation, targetRotation, _roundSpeed * Time.deltaTime);
                 
                 //当炮台的枪口根怪物之间的角度相差小于5度后，开枪攻击
-                if(Quaternion.Angle(head.transform.rotation ,targetRotation)<5f && Time.time - preTime >= _info.offsetTime)
+                if(Quaternion.Angle(head.transform.rotation ,targetRotation)<5f && Time.time - _preTime >= _info.offsetTime)
                 {
-                    preTime = Time.time;
+                    _preTime = Time.time;
                     GameObject effObj = Instantiate(Resources.Load<GameObject>(_info.eff));
                     effObj.transform.position = monsterObject.transform.position;
                     effObj.transform.rotation = targetRotation;

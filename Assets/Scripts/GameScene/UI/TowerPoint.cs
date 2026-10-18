@@ -29,7 +29,6 @@ namespace UI
                 towerObj = null;
             }
             
-            Debug.Log(info.res);
             
             //实例化塔对象
             towerObj = Instantiate(Resources.Load<GameObject>(info.res), this.transform.position, Quaternion.identity);

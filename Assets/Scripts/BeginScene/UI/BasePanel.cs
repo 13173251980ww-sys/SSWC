@@ -1,12 +1,11 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public abstract class BasePanel : MonoBehaviour
 {
     private CanvasGroup _canvasGroup;
     private float _alphaSpeed = 5f;
-    public bool _isShow = false;
+    public bool isShow;
     private UnityAction _hideCallback;
     
     protected virtual void Awake()
@@ -31,25 +30,25 @@ public abstract class BasePanel : MonoBehaviour
     public virtual void ShowMe()
     {
         _canvasGroup.alpha = 0;
-        _isShow = true;
+        isShow = true;
     }
 
     public virtual void HideMe(UnityAction callback)
     {
         _canvasGroup.alpha = 1;
-        _isShow = false;
+        isShow = false;
         _hideCallback = callback;
     }
 
     protected virtual void Update()
     {
-        if (_isShow && _canvasGroup.alpha < 1)
+        if (isShow && _canvasGroup.alpha < 1)
         {
             _canvasGroup.alpha += _alphaSpeed * Time.deltaTime;
             if(_canvasGroup.alpha > 1)
                 _canvasGroup.alpha = 1;
         }
-        else if (!_isShow && _canvasGroup.alpha > 0)
+        else if (!isShow && _canvasGroup.alpha > 0)
         {
             _canvasGroup.alpha -= _alphaSpeed * Time.deltaTime;
             if (_canvasGroup.alpha <= 0)

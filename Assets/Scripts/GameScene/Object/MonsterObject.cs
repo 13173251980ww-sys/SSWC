@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Assertions.Must;
 
 public class MonsterObject : MonoBehaviour
 {
@@ -10,10 +9,12 @@ public class MonsterObject : MonoBehaviour
     private MonsterInfoData _info;
     
     private int _hp;
-    public bool isDead=false;
+    public bool isDead;
     
     //上一次攻击的间隔
     private float _frontTime;
+
+    private Collider[] _colliders;
     
     void Awake()
     {
@@ -51,7 +52,7 @@ public class MonsterObject : MonoBehaviour
         }
     }
     
-    public void Dead()
+    private void Dead()
     {
         isDead=true;
         _navMeshAgent.isStopped=true;
@@ -68,8 +69,8 @@ public class MonsterObject : MonoBehaviour
     //攻击——范围检测
     public void AtkEvent()
     {
-        Collider[] colliders =Physics.OverlapSphere(this.transform.position + this.transform.forward + this.transform.up, 1, 1 << LayerMask.NameToLayer("MainTower"));
-        foreach (Collider col in colliders)
+        Physics.OverlapSphereNonAlloc(this.transform.position + this.transform.forward + this.transform.up, 1, _colliders,1 << LayerMask.NameToLayer("MainTower"));
+        foreach (Collider col in _colliders)
         {
             if(col.gameObject == MainTowerObject.Instance.gameObject)
             {
@@ -88,7 +89,7 @@ public class MonsterObject : MonoBehaviour
         {
             //游戏胜利
             GameOverPanel panel=UIManager.Instance.ShowPanel<GameOverPanel>();
-            panel.InitInfo((int)(DataManager.Instance.NowRoleInfoData.money),true);
+            panel.InitInfo(DataManager.Instance.NowRoleInfoData.money,true);
         }
     }
     

@@ -56,11 +56,13 @@ public class SelectPanel : BasePanel
         
         btnStart.onClick.AddListener(() =>
         {
-            if(DataManager.Instance.PlayerData.buyRoles.Contains(NowRole.id) || NowRole.lockMoney == 0)
+            if (DataManager.Instance.PlayerData.buyRoles.Contains(NowRole.id) || NowRole.lockMoney == 0)
+            {
                 UIManager.Instance.HidePanel<SelectPanel>();
                 //进入选择场景，此时需要一个全局的管理器记录当前选择的角色，因此我们需要在DataManager里加一个数据类用来记录当前角色
                 DataManager.Instance.NowRoleInfoData = NowRole;
                 UIManager.Instance.ShowPanel<SceneSelectPanel>();
+            }
         });
         
         btnBack.onClick.AddListener(() =>

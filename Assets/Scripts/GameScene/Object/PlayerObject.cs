@@ -3,14 +3,18 @@ using UnityEngine;
 public class PlayerObject : MonoBehaviour
 {
     //初始化属性
-    private int atk;
+    private int _atk;
     public int money;
 
-    private float rotateSpeed=250;
+    private float _rotateSpeed=250;
     
     private Animator _animator;
 
-    public Transform _gunPoint;
+    public Transform gunPoint;
+
+    private Collider[] _colliders;
+
+    private RaycastHit[] _hits;
     
     private void Start()
     {
@@ -19,7 +23,7 @@ public class PlayerObject : MonoBehaviour
 
     public void InitPlayer(int atk,int money)
     {
-        this.atk = atk;
+        _atk = atk;
         this.money = money;
         UpdateMoney();
     }
@@ -31,7 +35,7 @@ public class PlayerObject : MonoBehaviour
         _animator.SetFloat("VSpeed", Input.GetAxis("Vertical"));
         
         //旋转
-        this.transform.Rotate(Vector3.up,rotateSpeed*Time.deltaTime*Input.GetAxis("Mouse X"));
+        this.transform.Rotate(Vector3.up,_rotateSpeed*Time.deltaTime*Input.GetAxis("Mouse X"));
         
         //蹲起
         if(Input.GetKeyDown(KeyCode.LeftShift))
@@ -52,12 +56,18 @@ public class PlayerObject : MonoBehaviour
     public void KnifeEvent()
     {
         DataManager.Instance.PlaySound("Knife");
-        Collider[] colliders = Physics.OverlapSphere(this.transform.position +this.transform.forward+this.transform.up,1,1<<LayerMask.NameToLayer("Monster"));
-        for (var i = 0; i < colliders.Length; i++)
+        Physics.OverlapSphereNonAlloc(this.transform.position +this.transform.forward+this.transform.up,1,_colliders,1<<LayerMask.NameToLayer("Monster"));
+
+        if (_colliders.Length == 0)
         {
-            if (colliders[i].gameObject.layer == LayerMask.NameToLayer("Monster"))
+            return;
+        }
+        
+        for (var i = 0; i < _colliders.Length; i++)
+        {
+            if (_colliders[i].gameObject.layer == LayerMask.NameToLayer("Monster"))
             {
-                colliders[i].gameObject.GetComponent<MonsterObject>().Wound(atk);
+                _colliders[i].gameObject.GetComponent<MonsterObject>().Wound(_atk);
             }
         }
     }
@@ -65,16 +75,20 @@ public class PlayerObject : MonoBehaviour
     public void ShootEvent()
     {
         DataManager.Instance.PlaySound("Gun");
-        RaycastHit[] hits = Physics.RaycastAll(_gunPoint.position, this.transform.forward, 1000, 1 << LayerMask.NameToLayer("Monster"));
-        for (var i = 0; i < hits.Length; i++)
+        Physics.RaycastNonAlloc(gunPoint.position, this.transform.forward,_hits, 1000, 1 << LayerMask.NameToLayer("Monster"));
+        
+        if(_hits.Length ==0)
+            return;
+        
+        for (var i = 0; i < _hits.Length; i++)
         {
-            MonsterObject monster = hits[i].collider.gameObject.GetComponent<MonsterObject>();
+            MonsterObject monster = _hits[i].collider.gameObject.GetComponent<MonsterObject>();
             if(monster != null)
             {
                 GameObject effObj = Instantiate(Resources.Load<GameObject>(DataManager.Instance.NowRoleInfoData.hitEff));
-                effObj.transform.position = hits[i].point;
-                effObj.transform.rotation = Quaternion.LookRotation(hits[i].normal);
-                monster.Wound(atk);
+                effObj.transform.position = _hits[i].point;
+                effObj.transform.rotation = Quaternion.LookRotation(_hits[i].normal);
+                monster.Wound(_atk);
                 break;
             }
         }

@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "res": "Monster/1",
+        "animator": "Animator/Monster/Aggressive",
+        "atk": 5,
+        "moveSpeed": 100,
+        "roundSpeed": 200,
+        "hp": 10,
+        "atkOffset": 0.8
+    },
+    {
+        "id": 2,
+        "res": "Monster/2",
+        "animator": "Animator/Monster/Broken",
+        "atk": 5,
+        "moveSpeed": 100,
+        "roundSpeed": 200,
+        "hp": 10,
+        "atkOffset": 0.8
+    },
+    {
+        "id": 3,
+        "res": "Monster/3",
+        "animator": "Animator/Monster/Calm",
+        "atk": 5,
+        "moveSpeed": 100,
+        "roundSpeed": 200,
+        "hp": 10,
+        "atkOffset": 0.8
+    },
+    {
+        "id": 4,
+        "res": "Monster/4",
+        "animator": "Animator/Monster/Crawl",
+        "atk": 5,
+        "moveSpeed": 100,
+        "roundSpeed": 200,
+        "hp": 10,
+        "atkOffset": 0.8
+    },
+    {
+        "id": 5,
+        "res": "Monster/1",
+        "animator": "Animator/Monster/Aggressive",
+        "atk": 5,
+        "moveSpeed": 100,
+        "roundSpeed": 200,
+        "hp": 10,
+        "atkOffset": 0.8
+    },
+    {
+        "id": 6,
+        "res": "Monster/2",
+        "animator": "Animator/Monster/Crawl",
+        "atk": 5,
+        "moveSpeed": 100,
+        "roundSpeed": 200,
+        "hp": 10,
+        "atkOffset": 0.8
+    }
+]

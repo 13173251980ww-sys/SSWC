@@ -56,7 +56,7 @@ public class JsonMgr
         //如果读写文件夹中都还没有 那就返回一个默认对象
         if (!File.Exists(path))
             return new T();
-
+        
         //进行反序列化
         string jsonStr = File.ReadAllText(path);
         //数据对象
@@ -70,6 +70,7 @@ public class JsonMgr
                 data = JsonMapper.ToObject<T>(jsonStr);
                 break;
         }
+        
 
         //把对象返回出去
         return data;

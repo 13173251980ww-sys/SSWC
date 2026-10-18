@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "res": "Role/1",
+    "atk": 100,
+    "tips": "最小的男人",
+    "lockMoney": 0,
+    "type": 1,
+    "hitEff": "Eff/1",
+    "money":100,
+    "towerHP":100
+  },
+  {
+    "id": 2,
+    "res": "Role/2",
+    "atk": 100,
+    "tips": "最帅的男人",
+    "lockMoney": 200,
+    "type": 2,
+    "hitEff": "Eff/2",
+    "money":100,
+    "towerHP":100
+  },
+  {
+    "id": 3,
+    "res": "Role/3",
+    "atk": 100,
+    "tips": "最棒的男人",
+    "lockMoney": 100,
+    "type": 2,
+    "hitEff": "Eff/3",
+    "money":100,
+    "towerHP":100
+  },
+  {
+    "id": 4,
+    "res": "Role/4",
+    "atk": 100,
+    "tips": "最大的男人",
+    "lockMoney": 300,
+    "type": 2,
+    "hitEff": "Eff/4",
+    "money":100,
+    "towerHP":100
+  },
+  {
+    "id": 5,
+    "res": "Role/5",
+    "atk": 100,
+    "tips": "最厉害的男人",
+    "lockMoney": 300,
+    "type": 2,
+    "hitEff": "Eff/5",
+    "money":100,
+    "towerHP":100
+  },
+  {
+    "id": 6,
+    "res": "Role/6",
+    "atk": 100,
+    "tips": "最长的男人",
+    "lockMoney": 200,
+    "type": 2,
+    "hitEff": "Eff/6",
+    "money":100,
+    "towerHP":100
+  }
+]

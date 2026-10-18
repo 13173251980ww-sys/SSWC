@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "imgRes": "SceneImg/1",
+    "name": "疯狂树林",
+    "tips": "啊啊啊啊",
+    "sceneName": "GameScene"
+  },
+  {
+    "id": 2,
+    "imgRes": "SceneImg/2",
+    "name": "极寒雪地",
+    "tips": "八八八八",
+    "sceneName": "GameScene"
+  },
+  {
+    "id": 3,
+    "imgRes": "SceneImg/3",
+    "name": "熔岩旱土",
+    "tips": "草草草草",
+    "sceneName": "GameScene"
+  }
+]

@@ -1,7 +1,9 @@
 using System.Collections.Generic;
-using Data;
 using UnityEngine;
 
+/// <summary>
+/// 数据管理器，用来在游戏开始时初始化数据。
+/// </summary>
 public class DataManager
 {
     private static DataManager _Instance;
@@ -18,14 +20,22 @@ public class DataManager
         }
     }
     
-    public MusicData MusicData; 
-    public List<RoleInfoData> RoleInfoDatas;
+    //音乐数据类
+    public MusicData MusicData;
+    //玩家数据类
     public PlayerData PlayerData;
+    //角色配置类列表
+    public List<RoleInfoData> RoleInfoDatas;
+    //当前选择的角色配置类
     public RoleInfoData NowRoleInfoData;
-    public List<SceneData> SceneDatas; 
+    //场景配置类列表
+    public List<SceneData> SceneDatas;
+    //怪物配置类列表
     public List<MonsterInfoData>  MonsterInfoDatas;
+    //塔配置类列表
     public List<TowerInfo>  TowerInfoDatas;
         
+    //初始化数据
     public DataManager()
     {
         MusicData = JsonMgr.Instance.LoadData<MusicData>("MusicData");
@@ -36,16 +46,22 @@ public class DataManager
         TowerInfoDatas = JsonMgr.Instance.LoadData<List<TowerInfo>>("TowerInfo");
     }
     
+    //保存音乐数据
     public void SaveMusicData()
     {
         JsonMgr.Instance.SaveData(MusicData, "MusicData");
     }
 
+    //保存玩家数据
     public void SavePlayerData()
     {
         JsonMgr.Instance.SaveData(PlayerData, "PlayerData");
     }
 
+    /// <summary>
+    /// 播放音效
+    /// </summary>
+    /// <param name="name">MP3文件的名字</param>
     public void PlaySound(string name)
     {
         GameObject audioObj = new GameObject("SFX");

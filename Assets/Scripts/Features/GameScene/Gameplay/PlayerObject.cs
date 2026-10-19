@@ -1,6 +1,12 @@
+using SSWC.Common.UI;
+using SSWC.Data;
+using SSWC.Features.GameScene.UI;
 using UnityEngine;
 
-/// <summary>
+
+namespace SSWC.Features.GameScene.Gameplay
+{
+    /// <summary>
 /// 玩家物体
 /// </summary>
 public class PlayerObject : MonoBehaviour
@@ -115,4 +121,5 @@ public class PlayerObject : MonoBehaviour
     {
         UIManager.Instance.GetPanel<GamePanel>().UpdateGold(money);
     }
+}
 }

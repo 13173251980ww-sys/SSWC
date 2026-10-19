@@ -1,48 +1,53 @@
 using UnityEngine;
 using UnityEngine.UI;
+using SSWC.Common.UI;
 
-/// <summary>
-/// 开始面板
-/// </summary>
-public class StartPanel : BasePanel
+
+namespace SSWC.Features.BeginScene.UI
 {
-    //开始按钮
-    public Button startButton;
-    //设置按钮
-    public Button settingButton;
-    //关于按钮
-    public Button aboutButton;
-    //离开按钮
-    public Button quitButton;
-
     /// <summary>
-    /// 绑定各组件的回调
+    /// 开始面板
     /// </summary>
-    public override void Init()
+    public class StartPanel : BasePanel
     {
-        startButton.onClick.AddListener(() =>
+        //开始按钮
+        public Button startButton;
+        //设置按钮
+        public Button settingButton;
+        //关于按钮
+        public Button aboutButton;
+        //离开按钮
+        public Button quitButton;
+
+        /// <summary>
+        /// 绑定各组件的回调
+        /// </summary>
+        public override void Init()
         {
-            Camera.main.GetComponent<CameraAnimator>().LeftTurn(() =>
+            startButton.onClick.AddListener(() =>
             {
-                UIManager.Instance.ShowPanel<SelectPanel>();
-            });
+                Camera.main.GetComponent<CameraAnimator>().LeftTurn(() =>
+                {
+                    UIManager.Instance.ShowPanel<SelectPanel>();
+                });
             
-            UIManager.Instance.HidePanel<StartPanel>();
-        });
+                UIManager.Instance.HidePanel<StartPanel>();
+            });
         
-        settingButton.onClick.AddListener(() =>
-        {
-            UIManager.Instance.ShowPanel<SettingPanel>();
-        });
+            settingButton.onClick.AddListener(() =>
+            {
+                UIManager.Instance.ShowPanel<SettingPanel>();
+            });
         
-        aboutButton.onClick.AddListener(() =>
-        {
-            //显示关于面板
-        });
+            aboutButton.onClick.AddListener(() =>
+            {
+                //显示关于面板
+            });
         
-        quitButton.onClick.AddListener(() =>
-        {
-            Application.Quit();
-        });
+            quitButton.onClick.AddListener(() =>
+            {
+                Application.Quit();
+            });
+        }
     }
 }
